@@ -25,7 +25,7 @@
  *      eliminar contacto
  *      lista de difusión
  */
-package com.cice;
+package com.cice.agenda.main;
 
 /**
  *
