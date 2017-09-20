@@ -5,20 +5,12 @@
  */
 package com.cice.agenda.business;
 
-import com.cice.agenda.dto.pojo.PersonaPOJO;
-
-
-
-
 /**
  *
  * @author cice
  */
-public interface ContactosDAO {
+public interface IIncluidaDifusion {
     
-    public void agregar(PersonaPOJO c);
-    public void editar(PersonaPOJO c);
-    public void eliminar(PersonaPOJO c);
-    
+    boolean isIncluidaDifusion();
     
 }

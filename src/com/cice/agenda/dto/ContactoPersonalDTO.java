@@ -9,16 +9,18 @@ import com.cice.agenda.dto.pojo.DireccionPOJO;
 import com.cice.agenda.dto.pojo.PersonaPOJO;
 import java.util.Date;
 import java.util.HashMap;
+import com.cice.agenda.business.IIncluidaDifusion;
 
 /**
  *
  * @author cice
  */
-public class ContactoPersonalDTO extends PersonaPOJO{
+public class ContactoPersonalDTO extends PersonaPOJO implements IIncluidaDifusion{
 
     private HashMap<String,String> telefonos;
     private HashMap<String,DireccionPOJO> direccionPostal;
     private HashMap<String,String> email;
+    private boolean isIncluidoDifusion;
 
     public ContactoPersonalDTO() {
     }
@@ -58,6 +60,11 @@ public class ContactoPersonalDTO extends PersonaPOJO{
 
     public void setEmail(HashMap<String, String> email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean isIncluidaDifusion() {
+        return isIncluidoDifusion;
     }
 
   

@@ -14,7 +14,7 @@ public enum TipoLista {
     ABIERTA("Abierta"),
     EXCLUSIVA("Exclusiva"),
     CERRADA("Cerrada"),
-    MODERADA("Modewrada");
+    MODERADA("Moderada");
             
     private String tipo;
 

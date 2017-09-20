@@ -13,7 +13,7 @@
  * 4. Agregar nuevos contactos, avisando si ya tengo un contacto con el mismo nombre.
  * 5. Agregar contactos a listas de difusión indicando. No todos son añadidos a estas listas
  * 6. Control de excepciones usando nuestras propias excepciones de los casos 2,3 y 4
- * 7. Posibilitar la cración de contactos profesionales, almacenando cif, direción fiscal y sector
+ * 7. Posibilitar la creación de contactos profesionales, almacenando cif, direción fiscal y sector
  * 8. Opciones de menu:
  *      mostrar todos
  *      mostrar por coincidencia de nombre o apellido
@@ -27,6 +27,8 @@
  */
 package com.cice.agenda.main;
 
+import com.cice.agenda.userinterface.Interfaz;
+
 /**
  *
  * @author cice
@@ -37,7 +39,12 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        runApp();
     }
     
+    private static void runApp() {
+        Interfaz interfaz =new Interfaz();
+        interfaz.iniciar();
+    
+    }
 }

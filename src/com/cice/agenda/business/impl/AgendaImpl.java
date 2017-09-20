@@ -5,15 +5,15 @@
  */
 package com.cice.agenda.business.impl;
 
-import com.cice.agenda.business.ContactosDAO;
 import com.cice.agenda.dto.pojo.PersonaPOJO;
 import java.util.ArrayList;
+import com.cice.agenda.business.Agenda;
 
 /**
  *
  * @author cice
  */
-public class ContactosDAOImpl implements ContactosDAO{
+public class AgendaImpl implements Agenda{
 
     ArrayList<PersonaPOJO> lcontacto = new ArrayList<PersonaPOJO>();
     
