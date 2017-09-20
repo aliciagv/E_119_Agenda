@@ -66,6 +66,16 @@ public class ContactoPersonalDTO extends PersonaPOJO implements IIncluidaDifusio
     public boolean isIncluidaDifusion() {
         return isIncluidoDifusion;
     }
+    
+    @Override
+    public void mostrarInfo(){
+       super.mostrarInfo();
+       telefonos.forEach((k,v)->System.out.println("Telefono : " + k + ": " + v));
+       direccionPostal.forEach((k,v)->System.out.println("Dirección : " + k + ": " + v.mostrarInfo()==null?"No tiene info de dirección": v.mostrarInfo()));
+       email.forEach((k,v)->System.out.println("Email : " + k + ": " + v));
+       
+    
+    }
 
   
 

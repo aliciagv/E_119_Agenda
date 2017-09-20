@@ -1,6 +1,6 @@
 /*
  * EJERCICIO INDIVIDUAL AGENDA JAVA
- * Tenemos que crear una agneda que nos permita:
+ * Tenemos que crear una agenda que nos permita:
  * 1. Almacenar contactos.
  *   nombre completo
  *   telefono 1

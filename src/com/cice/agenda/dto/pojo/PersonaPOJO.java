@@ -6,6 +6,8 @@
 package com.cice.agenda.dto.pojo;
 //POJO: Plain Old Java Object
 
+import com.cice.agenda.constants.Constantes;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,6 +20,7 @@ public class PersonaPOJO {
     private String primerApellido;
     private String segundoApellido;
     private Date fechaNacimiento;
+  
 
     
     public PersonaPOJO() {
@@ -64,7 +67,13 @@ public class PersonaPOJO {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-
+    
+    public void mostrarInfo(){
+        System.out.println("El nombre es: " + nombre + " " + primerApellido + " " + segundoApellido);
+        if (fechaNacimiento!=null)
+            System.out.println("La fecha de nacimiento es: "+  Constantes.sdf.format(fechaNacimiento));
+        
+    }
     
     
     

@@ -10,7 +10,7 @@ package com.cice.agenda.dto.pojo;
  * @author cice
  */
 public class DireccionPOJO {
-    
+
     private String direccion;
     private String número;
     private String municipio;
@@ -64,8 +64,35 @@ public class DireccionPOJO {
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
-    
-    
-    
-    
+
+    public String mostrarInfo() {
+        StringBuilder info = null;
+        //añadimos dirección
+        if (direccion != null) {
+            info.append(info.append("La dirección es: ").append(direccion));
+        }
+        //añadimos número
+        if (número != null) {
+            if (info != null) {
+                info.append(" ");
+            }
+            info.append("El número es: ").append(número);
+        }
+        //añadimos municipio
+        if (municipio != null) {
+            if (info != null) {
+                info.append(" ");
+            }
+            System.out.println("El municipio es: " + municipio);
+        }
+        //añadimos provincia
+        if (provincia != null) {
+            if (info != null) {
+                info.append(" ");
+            }
+            System.out.println("La provincia es: " + provincia);
+        }
+        return info.toString();
+    }
+
 }

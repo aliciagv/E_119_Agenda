@@ -14,11 +14,13 @@ import com.cice.agenda.dto.pojo.PersonaPOJO;
  *
  * @author cice
  */
-public interface Agenda {
+public interface IAgenda {
     
     public void agregar(PersonaPOJO c);
     public void editar(PersonaPOJO c);
     public void eliminar(PersonaPOJO c);
+    public void mostrar();
+    public void buscarContactosByNombreApellido();
     
     
 }

@@ -6,6 +6,9 @@
 package com.cice.agenda.userinterface;
 
 import com.cice.agenda.business.impl.AgendaImpl;
+import com.cice.agenda.constants.Constantes;
+import com.cice.agenda.dto.ContactoPersonalDTO;
+import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +23,7 @@ public class Interfaz {
     private AgendaImpl agenda = new AgendaImpl();
 
     public void iniciar() {
+       
         mostrarMenu();
     }
 
@@ -74,6 +78,15 @@ public class Interfaz {
                         System.out.println("Hasta pronto!");
                         break;
                     case 1: 
+                        agenda.mostrar();
+                        break;
+                    case 2:
+                        break;
+                    case 3: 
+                        break;
+                    case 4: 
+                        anadir();
+                        break;
                     default:
                         throw new AssertionError();
                 }
@@ -87,4 +100,40 @@ public class Interfaz {
         } while (opcion != 0);
 
     }
+    
+    private void anadir(){
+       /* PersonaPOJO personaPOJO = new PersonaPOJO();
+        System.out.print("Introduce el nombre: ");
+        personaPOJO.setNombre(sc.nextLine());
+        System.out.print("Introduce el primer apellido: ");
+        personaPOJO.setPrimerApellido(sc.nextLine());
+        System.out.println("Introduce el segundo apellido: ");
+        personaPOJO.setSegundoApellido(sc.nextLine());
+        System.out.println("Introduce la fecha de nacimiento dd-MM-yyyy");
+        try {
+            personaPOJO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
+        } catch (ParseException ex) {
+            System.out.println("ERROR:El formato de la fecha es incorrecto y no ha sido asignada");
+        }
+        agenda.agregar(personaPOJO);*/
+       
+        ContactoPersonalDTO personaPOJO = new ContactoPersonalDTO();
+        System.out.print("Introduce el nombre: ");
+        personaPOJO.setNombre(sc.nextLine());
+        System.out.print("Introduce el primer apellido: ");
+        personaPOJO.setPrimerApellido(sc.nextLine());
+        System.out.println("Introduce el segundo apellido: ");
+        personaPOJO.setSegundoApellido(sc.nextLine());
+        System.out.println("Introduce la fecha de nacimiento dd-MM-yyyy");
+        try {
+            personaPOJO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
+        } catch (ParseException ex) {
+            System.out.println("ERROR:El formato de la fecha es incorrecto y no ha sido asignada");
+        }
+        agenda.agregar(personaPOJO);
+        
+        
+        
+    }
+    
 }
