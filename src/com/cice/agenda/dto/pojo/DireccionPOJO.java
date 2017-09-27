@@ -17,6 +17,9 @@ public class DireccionPOJO {
     private String provincia;
     private String codigoPostal;
 
+    public DireccionPOJO() {
+    }
+
     public DireccionPOJO(String direccion, String número, String municipio, String provincia, String codigoPostal) {
         this.direccion = direccion;
         this.número = número;

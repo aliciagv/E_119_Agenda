@@ -33,7 +33,7 @@ import com.cice.agenda.userinterface.Interfaz;
  *
  * @author cice
  */
-public class main {
+public class Main {
 
     /**
      * @param args the command line arguments

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cice.agenda.main;
+package com.cice.agenda.utils;
 
 import com.cice.agenda.constants.Constantes;
 import java.text.ParseException;

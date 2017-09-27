@@ -5,7 +5,9 @@
  */
 package com.cice.agenda.business;
 
-import com.cice.agenda.dto.pojo.PersonaPOJO;
+import com.cice.agenda.dto.ContactoPersonalDTO;
+
+
 
 
 
@@ -16,9 +18,9 @@ import com.cice.agenda.dto.pojo.PersonaPOJO;
  */
 public interface IAgenda {
     
-    public void agregar(PersonaPOJO c);
-    public void editar(PersonaPOJO c);
-    public void eliminar(PersonaPOJO c);
+    public void agregar(ContactoPersonalDTO c);
+    public void editar(ContactoPersonalDTO c);
+    public void eliminar(ContactoPersonalDTO c);
     public void mostrar();
     public void buscarContactosByNombreApellido();
     

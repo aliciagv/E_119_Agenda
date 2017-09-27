@@ -8,6 +8,10 @@ package com.cice.agenda.userinterface;
 import com.cice.agenda.business.impl.AgendaImpl;
 import com.cice.agenda.constants.Constantes;
 import com.cice.agenda.dto.ContactoPersonalDTO;
+import com.cice.agenda.dto.ContactoProfesionalDTO;
+import com.cice.agenda.dto.pojo.DireccionPOJO;
+import com.cice.agenda.exceptions.NotValidFormatException;
+import com.cice.agenda.utils.Validator;
 import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,7 +27,7 @@ public class Interfaz {
     private AgendaImpl agenda = new AgendaImpl();
 
     public void iniciar() {
-       
+
         mostrarMenu();
     }
 
@@ -34,7 +38,8 @@ public class Interfaz {
         getOpcion();
 
     }
-/*1. Almacenar contactos.
+
+    /*1. Almacenar contactos.
  *   nombre completo
  *   telefono 1
  *   telefono 2
@@ -74,17 +79,17 @@ public class Interfaz {
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 0:
-                        System.out.println("Gracias por utilizar la agneda");
+                        System.out.println("Gracias por utilizar la agenda");
                         System.out.println("Hasta pronto!");
                         break;
-                    case 1: 
+                    case 1:
                         agenda.mostrar();
                         break;
                     case 2:
                         break;
-                    case 3: 
+                    case 3:
                         break;
-                    case 4: 
+                    case 4:
                         anadir();
                         break;
                     default:
@@ -101,22 +106,15 @@ public class Interfaz {
 
     }
     
-    private void anadir(){
-       /* PersonaPOJO personaPOJO = new PersonaPOJO();
-        System.out.print("Introduce el nombre: ");
-        personaPOJO.setNombre(sc.nextLine());
-        System.out.print("Introduce el primer apellido: ");
-        personaPOJO.setPrimerApellido(sc.nextLine());
-        System.out.println("Introduce el segundo apellido: ");
-        personaPOJO.setSegundoApellido(sc.nextLine());
-        System.out.println("Introduce la fecha de nacimiento dd-MM-yyyy");
-        try {
-            personaPOJO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
-        } catch (ParseException ex) {
-            System.out.println("ERROR:El formato de la fecha es incorrecto y no ha sido asignada");
-        }
-        agenda.agregar(personaPOJO);*/
-       
+    private void anadirEmail(){
+        
+    
+    
+    }
+
+    private void anadir() {
+
+
         ContactoPersonalDTO personaPOJO = new ContactoPersonalDTO();
         System.out.print("Introduce el nombre: ");
         personaPOJO.setNombre(sc.nextLine());
@@ -130,10 +128,46 @@ public class Interfaz {
         } catch (ParseException ex) {
             System.out.println("ERROR:El formato de la fecha es incorrecto y no ha sido asignada");
         }
-        agenda.agregar(personaPOJO);
-        
-        
-        
-    }
+        anadirEmail();
+        System.out.print("Introduce el email:");
+        String email=sc.nextLine();
+        try {
+            Validator.validate(email, Constantes.PATTERN_EMAIL);
+        } catch (NotValidFormatException ex) {
+            
+        }
     
+        
+        System.out.println("¿El contacto a añadir es un contacto profesional? Y:N");
+        if (sc.nextLine().equalsIgnoreCase("Y")) {
+            
+            ContactoProfesionalDTO contactoProfesional = (ContactoProfesionalDTO) personaPOJO;
+            
+            System.out.print("Introduce el cif:");
+            contactoProfesional.setCif(sc.nextLine());
+            System.out.print("Introduce el sector:");
+            contactoProfesional.setSector(sc.nextLine());
+            System.out.print("Introduce la direccion:");
+            
+            DireccionPOJO direccion = new DireccionPOJO();
+            
+            direccion.setDireccion(sc.nextLine());
+            System.out.print("Introduce el número:");
+            direccion.setNúmero(sc.nextLine());
+            System.out.print("Introduce el municipio:");
+            
+            
+            direccion.setMunicipio(sc.nextLine());
+            System.out.print("Introduce la provincia:");
+            direccion.setProvincia(sc.nextLine());
+            System.out.print("Introduce el código postal:");
+            direccion.setCodigoPostal(sc.nextLine());
+                    
+        } else {
+
+            agenda.agregar(personaPOJO);
+        }
+
+    }
+
 }

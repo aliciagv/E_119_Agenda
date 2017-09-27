@@ -5,9 +5,9 @@
  */
 package com.cice.agenda.business.impl;
 
-import com.cice.agenda.dto.pojo.PersonaPOJO;
 import java.util.ArrayList;
 import com.cice.agenda.business.IAgenda;
+import com.cice.agenda.dto.ContactoPersonalDTO;
 
 /**
  *
@@ -15,26 +15,26 @@ import com.cice.agenda.business.IAgenda;
  */
 public class AgendaImpl implements IAgenda{
 
-    ArrayList<PersonaPOJO> lcontacto = new ArrayList<PersonaPOJO>();
+    ArrayList<ContactoPersonalDTO> lcontacto = new ArrayList<ContactoPersonalDTO>();
     
     
-    public void agregar(PersonaPOJO c) {
+    public void agregar(ContactoPersonalDTO c) {
         lcontacto.add(c);
     }
 
     @Override
-    public void editar(PersonaPOJO c) {
+    public void editar(ContactoPersonalDTO c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void eliminar(PersonaPOJO c) {
+    public void eliminar(ContactoPersonalDTO c) {
         lcontacto.remove(c);
     }
 
     @Override
     public void mostrar() {
-       for (PersonaPOJO p:lcontacto){
+       for (ContactoPersonalDTO p:lcontacto){
             p.mostrarInfo();
        }
     }
