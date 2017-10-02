@@ -25,7 +25,7 @@ public class MyProperties {
        
     }
     
-    public void init(String path) throws FileNotFoundException, IOException {
+    public static void init(String path) throws FileNotFoundException, IOException {
     
         if (instance==null) {
             instance =new MyProperties();

@@ -9,10 +9,12 @@ import com.cice.agenda.business.impl.AgendaImpl;
 import com.cice.agenda.constants.Constantes;
 import com.cice.agenda.dto.ContactoPersonalDTO;
 import com.cice.agenda.dto.ContactoProfesionalDTO;
+import com.cice.agenda.dto.enumeration.TipoEmail;
 import com.cice.agenda.dto.pojo.DireccionPOJO;
 import com.cice.agenda.exceptions.NotValidFormatException;
 import com.cice.agenda.utils.Validator;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -93,7 +95,9 @@ public class Interfaz {
                         anadir();
                         break;
                     default:
-                        throw new AssertionError();
+                        System.out.println("ERROR:Debe elegir un número del listado");
+                        sc.next();
+                        opcion = 1;
                 }
 
             } catch (InputMismatchException ime) {
@@ -105,69 +109,113 @@ public class Interfaz {
         } while (opcion != 0);
 
     }
-    
-    private void anadirEmail(){
+
+    private void anadirEmail(ContactoPersonalDTO personaDTO) {
+        String opcion = "Y";
+        int tipo=0;
+        HashMap<String, String> hm_email= new HashMap<String, String>();
         
+        do {
+            System.out.print("Introduce el email: ");
+            String semail = sc.nextLine();
+            try {
+                Validator.validate(semail, Constantes.PATTERN_EMAIL);
+                System.out.println("¿El email es personal o profesonial? ");
+                System.out.println("1. Personal");
+                System.out.println("2. Profesional");
+                tipo=sc.nextInt();
+                switch (tipo) {
+                    case 1:
+                        hm_email.put(TipoEmail.PER.getTipo(), semail);
+                        
+                        break;
+                    case 2:
+                         hm_email.put(TipoEmail.PRO.getTipo(), semail);
+                         break;
+                    default:
+                       System.out.println("ERROR, El tipo elegido es incorrecto.");
+                }
+                
+                
+                
+              
+                
+            } catch (NotValidFormatException nvfe) {
+                System.out.println(new NotValidFormatException(NotValidFormatException.ERR_CODE_EMAIL));
+                 
+            }
+            catch(InputMismatchException ime) {
+                System.out.println("ERROR, El tipo elegido es incorrecto.");
+               }
+            System.out.println("¿Quiere introducir otro email? Y/N");
+            opcion=sc.nextLine();
+            }
+            while (opcion.equalsIgnoreCase("Y")&&(hm_email==null || hm_email.size()<2));
+            personaDTO.setEmail(hm_email);
+        }
+
     
-    
-    }
 
     private void anadir() {
 
-
-        ContactoPersonalDTO personaPOJO = new ContactoPersonalDTO();
-        System.out.print("Introduce el nombre: ");
-        personaPOJO.setNombre(sc.nextLine());
-        System.out.print("Introduce el primer apellido: ");
-        personaPOJO.setPrimerApellido(sc.nextLine());
+        ContactoPersonalDTO personaDTO = new ContactoPersonalDTO();
+        System.out.println("Introduce el nombre: ");
+        String nombre = sc.nextLine();
+        personaDTO.setNombre(nombre);
+        System.out.println("Introduce el primer apellido: ");
+        personaDTO.setPrimerApellido(sc.nextLine());
         System.out.println("Introduce el segundo apellido: ");
-        personaPOJO.setSegundoApellido(sc.nextLine());
+        personaDTO.setSegundoApellido(sc.nextLine());
         System.out.println("Introduce la fecha de nacimiento dd-MM-yyyy");
         try {
-            personaPOJO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
+            personaDTO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
         } catch (ParseException ex) {
             System.out.println("ERROR:El formato de la fecha es incorrecto y no ha sido asignada");
         }
-        anadirEmail();
-        System.out.print("Introduce el email:");
-        String email=sc.nextLine();
-        try {
-            Validator.validate(email, Constantes.PATTERN_EMAIL);
-        } catch (NotValidFormatException ex) {
-            
-        }
-    
-        
+        this.anadirEmail(personaDTO);
+
+
         System.out.println("¿El contacto a añadir es un contacto profesional? Y:N");
         if (sc.nextLine().equalsIgnoreCase("Y")) {
-            
-            ContactoProfesionalDTO contactoProfesional = (ContactoProfesionalDTO) personaPOJO;
-            
+
+            ContactoProfesionalDTO contactoProfesional =  new ContactoProfesionalDTO();
+            contactoProfesional.setNombre(personaDTO.getNombre());
+            asignacionContactoProfesional(contactoProfesional,personaDTO);
             System.out.print("Introduce el cif:");
             contactoProfesional.setCif(sc.nextLine());
             System.out.print("Introduce el sector:");
             contactoProfesional.setSector(sc.nextLine());
             System.out.print("Introduce la direccion:");
-            
+
             DireccionPOJO direccion = new DireccionPOJO();
-            
+
             direccion.setDireccion(sc.nextLine());
             System.out.print("Introduce el número:");
             direccion.setNúmero(sc.nextLine());
             System.out.print("Introduce el municipio:");
-            
-            
+
             direccion.setMunicipio(sc.nextLine());
             System.out.print("Introduce la provincia:");
             direccion.setProvincia(sc.nextLine());
             System.out.print("Introduce el código postal:");
             direccion.setCodigoPostal(sc.nextLine());
-                    
+
         } else {
 
-            agenda.agregar(personaPOJO);
+            agenda.agregar(personaDTO);
         }
 
     }
+    
+    private void asignacionContactoProfesional(ContactoProfesionalDTO contactoProfesional,ContactoPersonalDTO personaDTO){
+         contactoProfesional.setNombre(personaDTO.getNombre());
+         contactoProfesional.setPrimerApellido(personaDTO.getPrimerApellido());
+         contactoProfesional.setSegundoApellido(personaDTO.getSegundoApellido());
+         contactoProfesional.setFechaNacimiento(personaDTO.getFechaNacimiento());
+    }
 
 }
+            
+          
+
+

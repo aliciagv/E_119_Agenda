@@ -1,0 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.cice.agenda.dto.enumeration;
+
+/**
+ *
+ * @author Alicia
+ */
+public enum TipoEmail {
+
+    PER("Personal"),
+    PRO("Profesional");
+
+    private String tipo;
+
+    private TipoEmail(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+    
+}

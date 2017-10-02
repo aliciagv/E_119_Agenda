@@ -49,7 +49,7 @@ public class ContactoProfesionalDTO extends ContactoPersonalDTO {
          if (direccionFiscal!=null){
              String sdireccionFiscal=direccionFiscal.mostrarInfo();
              if (sdireccionFiscal!=null){
-                 System.out.println("La dirección fiscal es: "+ sdireccionFiscal);
+                System.out.println("La dirección fiscal es: "+ sdireccionFiscal);
              }
              
          }

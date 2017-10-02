@@ -70,9 +70,12 @@ public class ContactoPersonalDTO extends PersonaPOJO implements IIncluidaDifusio
     @Override
     public void mostrarInfo(){
        super.mostrarInfo();
-       telefonos.forEach((k,v)->System.out.println("Telefono : " + k + ": " + v));
-       direccionPostal.forEach((k,v)->System.out.println("Dirección : " + k + ": " + v.mostrarInfo()==null?"No tiene info de dirección": v.mostrarInfo()));
-       email.forEach((k,v)->System.out.println("Email : " + k + ": " + v));
+       if (!telefonos.isEmpty())
+         telefonos.forEach((k,v)->System.out.println("Telefono : " + k + ": " + v));
+       if (!direccionPostal.isEmpty())
+         direccionPostal.forEach((k,v)->System.out.println("Dirección : " + k + ": " + v.mostrarInfo()==null?"No tiene info de dirección": v.mostrarInfo()));
+       if (!email.isEmpty())
+         email.forEach((k,v)->System.out.println("Email : " + k + ": " + v));
        
     
     }

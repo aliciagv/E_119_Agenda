@@ -27,7 +27,11 @@
  */
 package com.cice.agenda.main;
 
+import com.cice.agenda.config.MyProperties;
 import com.cice.agenda.userinterface.Interfaz;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,6 +47,12 @@ public class Main {
     }
     
     private static void runApp() {
+        
+        try {
+            MyProperties.init("properties/excepciones.properties");
+        } catch (IOException ex) {
+            System.out.println("ERROR: Error al cargar configuración");
+        }
         Interfaz interfaz =new Interfaz();
         interfaz.iniciar();
     

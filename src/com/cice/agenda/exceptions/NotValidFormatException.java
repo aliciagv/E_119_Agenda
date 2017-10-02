@@ -13,14 +13,20 @@ import com.cice.agenda.config.MyProperties;
  */
 public class NotValidFormatException extends Exception {
     
-    public static final String ERR_CODE_EMAIL="0";
+    public static final String ERR_CODE_EMAIL="01";
+    public static final String FORMAT_ERROR="Formato no válido";
     
     public NotValidFormatException(String code){
-        super (MyProperties.getInstance().getMsgAsociado(code));
+        super (obtenerMsgAsociado(code));
+        
     }
 
     public NotValidFormatException() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        super(FORMAT_ERROR);
+      
+    }
+    private static String obtenerMsgAsociado(String code) {
+        return MyProperties.getInstance().getMsgAsociado(code);
     }
     
     
