@@ -76,7 +76,7 @@ public class Interfaz {
             System.out.println("7. Editar lista de difusión");
             System.out.println("8. Eliminiar contacto");
             System.out.println("9. Eliminar lista de difusión");
-            System.out.println("");
+            System.out.println("0. Salir");
             try {
                 opcion = sc.nextInt();
                 switch (opcion) {
@@ -126,12 +126,25 @@ public class Interfaz {
                 tipo=sc.nextInt();
                 switch (tipo) {
                     case 1:
-                        hm_email.put(TipoEmail.PER.getTipo(), semail);
+                    case 2:
+                        if (tipo==1 && hm_email.containsKey(TipoEmail.PER.getTipo())|| (tipo==2 && hm_email.containsKey(TipoEmail.PRO.getTipo()))) {
+                            System.out.println("Ya existe un email personal para este contacto, ¿quiere sobreescribirlo?: Y/N ");
+                            if (sc.nextLine().equalsIgnoreCase("Y")){
+                                if (tipo==1)
+                                  hm_email.put(TipoEmail.PER.getTipo(), semail);
+                                else 
+                                    hm_email.put(TipoEmail.PRO.getTipo(), semail);
+                            }
+                        } else {
+                              if (tipo==1)
+                                  hm_email.put(TipoEmail.PER.getTipo(), semail);
+                                else 
+                                    hm_email.put(TipoEmail.PRO.getTipo(), semail);
+                        }
+                       
                         
                         break;
-                    case 2:
-                         hm_email.put(TipoEmail.PRO.getTipo(), semail);
-                         break;
+
                     default:
                        System.out.println("ERROR, El tipo elegido es incorrecto.");
                 }
@@ -142,15 +155,17 @@ public class Interfaz {
                 
             } catch (NotValidFormatException nvfe) {
                 System.out.println(new NotValidFormatException(NotValidFormatException.ERR_CODE_EMAIL));
+                
                  
             }
             catch(InputMismatchException ime) {
                 System.out.println("ERROR, El tipo elegido es incorrecto.");
                }
-            System.out.println("¿Quiere introducir otro email? Y/N");
+            sc.nextLine();
+            System.out.print("¿Quiere introducir otro email? Y/N: ");
             opcion=sc.nextLine();
             }
-            while (opcion.equalsIgnoreCase("Y")&&(hm_email==null || hm_email.size()<2));
+            while (opcion.equalsIgnoreCase("Y")&&(hm_email.isEmpty() || hm_email.size()<2));
             personaDTO.setEmail(hm_email);
         }
 
@@ -159,14 +174,14 @@ public class Interfaz {
     private void anadir() {
 
         ContactoPersonalDTO personaDTO = new ContactoPersonalDTO();
-        System.out.println("Introduce el nombre: ");
-        String nombre = sc.nextLine();
-        personaDTO.setNombre(nombre);
-        System.out.println("Introduce el primer apellido: ");
+        sc.nextLine();
+        System.out.print("Introduce el nombre: ");
+        personaDTO.setNombre(sc.nextLine());
+        System.out.print("Introduce el primer apellido: ");
         personaDTO.setPrimerApellido(sc.nextLine());
-        System.out.println("Introduce el segundo apellido: ");
+        System.out.print("Introduce el segundo apellido: ");
         personaDTO.setSegundoApellido(sc.nextLine());
-        System.out.println("Introduce la fecha de nacimiento dd-MM-yyyy");
+        System.out.print("Introduce la fecha de nacimiento dd-MM-yyyy ");
         try {
             personaDTO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
         } catch (ParseException ex) {
@@ -181,24 +196,25 @@ public class Interfaz {
             ContactoProfesionalDTO contactoProfesional =  new ContactoProfesionalDTO();
             contactoProfesional.setNombre(personaDTO.getNombre());
             asignacionContactoProfesional(contactoProfesional,personaDTO);
-            System.out.print("Introduce el cif:");
+            System.out.print("Introduce el cif: ");
             contactoProfesional.setCif(sc.nextLine());
-            System.out.print("Introduce el sector:");
+            System.out.print("Introduce el sector: ");
             contactoProfesional.setSector(sc.nextLine());
-            System.out.print("Introduce la direccion:");
+            System.out.print("Introduce la direccion: ");
 
             DireccionPOJO direccion = new DireccionPOJO();
 
             direccion.setDireccion(sc.nextLine());
-            System.out.print("Introduce el número:");
+            System.out.print("Introduce el número: ");
             direccion.setNúmero(sc.nextLine());
-            System.out.print("Introduce el municipio:");
+            System.out.print("Introduce el municipio: ");
 
             direccion.setMunicipio(sc.nextLine());
-            System.out.print("Introduce la provincia:");
+            System.out.print("Introduce la provincia: ");
             direccion.setProvincia(sc.nextLine());
-            System.out.print("Introduce el código postal:");
+            System.out.print("Introduce el código postal: ");
             direccion.setCodigoPostal(sc.nextLine());
+            agenda.agregar(contactoProfesional);
 
         } else {
 

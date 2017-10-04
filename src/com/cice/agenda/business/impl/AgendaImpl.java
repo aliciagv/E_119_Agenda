@@ -34,14 +34,22 @@ public class AgendaImpl implements IAgenda{
 
     @Override
     public void mostrar() {
+       if (lcontacto.size()==0) {
+           System.out.println("No hay contactos en la agenda que mostrar");
+       } 
        for (ContactoPersonalDTO p:lcontacto){
             p.mostrarInfo();
        }
     }
 
     @Override
-    public void buscarContactosByNombreApellido() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buscarContactosByNombreApellido(String contacto) {
+       for (ContactoPersonalDTO p: lcontacto) {
+           if (p.getNombre().contains(contacto)|| p.getPrimerApellido().contains(contacto) || p.getSegundoApellido().contains(contacto)){
+               p.mostrarInfo();
+           }
+       
+       }
     }
     
 }

@@ -22,7 +22,7 @@ public interface IAgenda {
     public void editar(ContactoPersonalDTO c);
     public void eliminar(ContactoPersonalDTO c);
     public void mostrar();
-    public void buscarContactosByNombreApellido();
+    public void buscarContactosByNombreApellido(String contacto);
     
     
 }
