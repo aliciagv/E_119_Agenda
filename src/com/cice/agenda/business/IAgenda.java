@@ -6,6 +6,7 @@
 package com.cice.agenda.business;
 
 import com.cice.agenda.dto.ContactoPersonalDTO;
+import java.util.ArrayList;
 
 
 
@@ -23,6 +24,11 @@ public interface IAgenda {
     public void eliminar(ContactoPersonalDTO c);
     public void mostrar();
     public void buscarContactosByNombreApellido(String contacto);
+    public boolean contactoExistente(ContactoPersonalDTO c);
+    public ArrayList<ContactoPersonalDTO> buscarContactosByNombre(String contacto);
+    public void mostrarCoincidencias(ArrayList<ContactoPersonalDTO> lcontactobynombre);
+    public void mostrarListadoAgenda();
+    public boolean isEmpty();
     
     
 }

@@ -11,23 +11,20 @@ import com.cice.agenda.config.MyProperties;
  *
  * @author cice
  */
-public class NotValidFormatException extends Exception {
+public class NotValidFormatException extends AgendaException {
     
     public static final String ERR_CODE_EMAIL="01";
     public static final String FORMAT_ERROR="Formato no válido";
     
     public NotValidFormatException(String code){
-        super (obtenerMsgAsociado(code));
-        
+        super (obtenerMsgAsociado(code)!=null?obtenerMsgAsociado(code):FORMAT_ERROR);    
     }
-
+    
     public NotValidFormatException() {
         super(FORMAT_ERROR);
       
     }
-    private static String obtenerMsgAsociado(String code) {
-        return MyProperties.getInstance().getMsgAsociado(code);
-    }
+  
     
     
     

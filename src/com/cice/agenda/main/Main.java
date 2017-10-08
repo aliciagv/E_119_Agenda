@@ -30,8 +30,7 @@ package com.cice.agenda.main;
 import com.cice.agenda.config.MyProperties;
 import com.cice.agenda.userinterface.Interfaz;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *

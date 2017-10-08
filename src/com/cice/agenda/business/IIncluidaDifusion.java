@@ -11,6 +11,6 @@ package com.cice.agenda.business;
  */
 public interface IIncluidaDifusion {
     
-    boolean isIncluidaDifusion();
+    public void incluirDifusion();
     
 }

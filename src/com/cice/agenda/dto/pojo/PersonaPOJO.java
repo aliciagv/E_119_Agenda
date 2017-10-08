@@ -6,6 +6,7 @@
 package com.cice.agenda.dto.pojo;
 //POJO: Plain Old Java Object
 
+import com.cice.agenda.business.IIncluidaDifusion;
 import com.cice.agenda.constants.Constantes;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,14 +15,13 @@ import java.util.Date;
  *
  * @author cice
  */
-public class PersonaPOJO {
-    
+public class PersonaPOJO implements Comparable<PersonaPOJO> {
+
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
     private Date fechaNacimiento;
-  
-
+    
     
     public PersonaPOJO() {
     }
@@ -32,9 +32,6 @@ public class PersonaPOJO {
         this.segundoApellido = segundoApellido;
         this.fechaNacimiento = fechaNacimiento;
     }
-
-    
-
 
     public String getNombre() {
         return nombre;
@@ -67,15 +64,33 @@ public class PersonaPOJO {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-    
-    public void mostrarInfo(){
-        System.out.println("El nombre es: " + nombre + " " + primerApellido + " " + segundoApellido);
-        if (fechaNacimiento!=null)
-            System.out.println("La fecha de nacimiento es: "+  Constantes.sdf.format(fechaNacimiento));
+
+    public void mostrarInfo() {
         
+        System.out.println("=====================================================");
+        System.out.println("El nombre es: " + nombre + " " + primerApellido + " " + segundoApellido);
+        if (fechaNacimiento != null) {
+            System.out.println("La fecha de nacimiento es: " + Constantes.sdf.format(fechaNacimiento));
+        }
+
     }
     
-    
-    
-    
+    public void mostrarNombreCompleto(){
+         System.out.println(" " + nombre + " " + primerApellido + " " + segundoApellido);
+    }
+
+    @Override
+    public int compareTo(PersonaPOJO persona) {
+        if (persona.nombre.equalsIgnoreCase(nombre)
+                && persona.primerApellido.equalsIgnoreCase(this.primerApellido) 
+                    && persona.segundoApellido.equalsIgnoreCase(segundoApellido)) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+
+    }
 }
+
+

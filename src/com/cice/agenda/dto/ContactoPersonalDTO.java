@@ -15,28 +15,23 @@ import com.cice.agenda.business.IIncluidaDifusion;
  *
  * @author cice
  */
-public class ContactoPersonalDTO extends PersonaPOJO implements IIncluidaDifusion{
+public class ContactoPersonalDTO extends PersonaPOJO {
 
     private HashMap<String,String> telefonos;
     private HashMap<String,DireccionPOJO> direccionPostal;
     private HashMap<String,String> email;
-    private boolean isIncluidoDifusion;
+    private IIncluidaDifusion iincluirdifusion;
 
     public ContactoPersonalDTO() {
     }
 
-    
-    
-    public ContactoPersonalDTO(HashMap<String, String> telefonos, HashMap<String, DireccionPOJO> direccionPostal, HashMap<String, String> email, String nombre, String primerApellido, String segundoApellido, Date fechaNacimiento) {
-        super(nombre, primerApellido, segundoApellido, fechaNacimiento);
+    public ContactoPersonalDTO(HashMap<String, String> telefonos, HashMap<String, DireccionPOJO> direccionPostal, HashMap<String, String> email, IIncluidaDifusion iincluirdifusion) {
         this.telefonos = telefonos;
         this.direccionPostal = direccionPostal;
         this.email = email;
+        this.iincluirdifusion = iincluirdifusion;
     }
-    
-    
-    
-    
+
 
     public HashMap<String, String> getTelefonos() {
         return telefonos;
@@ -62,10 +57,15 @@ public class ContactoPersonalDTO extends PersonaPOJO implements IIncluidaDifusio
         this.email = email;
     }
 
-    @Override
-    public boolean isIncluidaDifusion() {
-        return isIncluidoDifusion;
+    public IIncluidaDifusion getIincluirdifusion() {
+        return iincluirdifusion;
     }
+
+    public void setIincluirdifusion(IIncluidaDifusion iincluirdifusion) {
+        this.iincluirdifusion = iincluirdifusion;
+    }
+
+
     
     @Override
     public void mostrarInfo(){
