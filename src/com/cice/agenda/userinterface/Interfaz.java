@@ -20,6 +20,7 @@ import com.cice.agenda.exceptions.NotValidFormatException;
 import com.cice.agenda.utils.Validator;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -203,6 +204,7 @@ public class Interfaz {
         System.out.print("Introduce el segundo apellido: ");
         personaDTO.setSegundoApellido(sc.nextLine());
         if (!agenda.contactoExistente(personaDTO)) {
+            
             System.out.print("Introduce la fecha de nacimiento dd-MM-yyyy ");
             try {
                 personaDTO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));

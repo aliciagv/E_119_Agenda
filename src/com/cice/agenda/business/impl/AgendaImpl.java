@@ -8,6 +8,7 @@ package com.cice.agenda.business.impl;
 import java.util.ArrayList;
 import com.cice.agenda.business.IAgenda;
 import com.cice.agenda.dto.ContactoPersonalDTO;
+import java.util.Comparator;
 
 /**
  *
@@ -43,9 +44,12 @@ public class AgendaImpl implements IAgenda {
     public void mostrar() {
         if (lcontacto.size() == 0) {
             System.out.println("No hay contactos en la agenda que mostrar");
-        }
-        for (ContactoPersonalDTO p : lcontacto) {
-            p.mostrarInfo();
+        } else {
+            Comparator<ContactoPersonalDTO> comparator = (a, b) -> a.getNombre().compareTo(b.getNombre());
+            lcontacto.sort((a, b) -> a.getNombre().compareTo(b.getNombre()));
+            for (ContactoPersonalDTO p : lcontacto) {
+                p.mostrarInfo();
+            }
         }
     }
 
@@ -101,7 +105,7 @@ public class AgendaImpl implements IAgenda {
 
     @Override
     public boolean isEmpty() {
-       return lcontacto!=null && lcontacto.size()==0;
+        return lcontacto != null && lcontacto.size() == 0;
     }
 
 }
