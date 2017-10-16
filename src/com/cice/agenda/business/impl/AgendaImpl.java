@@ -56,7 +56,7 @@ public class AgendaImpl implements IAgenda {
     @Override
     public void buscarContactosByNombreApellido(String contacto) {
         
-        boolean exixte=lcontacto.stream().allMatch(a->a.getNombre().contains(contacto) || a.getPrimerApellido().contains(contacto));
+        //boolean existe=lcontacto.stream().allMatch(a->a.getNombre().contains(contacto) || a.getPrimerApellido().contains(contacto));
                 
         for (ContactoPersonalDTO p : lcontacto) {
             if (p.getNombre().contains(contacto) || p.getPrimerApellido().contains(contacto) || p.getSegundoApellido().contains(contacto)) {

@@ -6,6 +6,8 @@
 package com.cice.agenda.business;
 
 import com.cice.agenda.dto.ContactoPersonalDTO;
+import com.cice.agenda.exceptions.ContactoExistenteException;
+import java.util.List;
 
 /**
  *
@@ -14,8 +16,10 @@ import com.cice.agenda.dto.ContactoPersonalDTO;
 public interface IListaDifusion {
     
     public void crearListaDifusion(String nombreLista);
-    public void addContacto(String nombreLista,ContactoPersonalDTO c);
+    public void addContacto(String nombreLista,ContactoPersonalDTO c)  throws ContactoExistenteException;;
     public boolean existeListaDifusion(String nombre);
-    public void mostarInfo();
+    public boolean contactoExistente(ContactoPersonalDTO c,List<ContactoPersonalDTO> lcontacto);
+    public List<ContactoPersonalDTO> getListaContacto(String nombreLista);
+    public void mostrarInfo();
     
 }

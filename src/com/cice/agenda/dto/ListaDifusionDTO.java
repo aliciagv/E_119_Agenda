@@ -27,6 +27,15 @@ public class ListaDifusionDTO {
     public ListaDifusionDTO() {
     }
 
+    public ListaDifusionDTO(HashMap<String, ArrayList<ContactoPersonalDTO>> hmlistaDifusion) {
+        this.hmlistaDifusion = hmlistaDifusion;
+    }
+
+    public ListaDifusionDTO(HashMap<String, ArrayList<ContactoPersonalDTO>> hmlistaDifusion, TipoLista tipoLista) {
+        this.hmlistaDifusion = hmlistaDifusion;
+        this.tipoLista = tipoLista;
+    }
+
     public HashMap<String, ArrayList<ContactoPersonalDTO>> getListaDifusion() {
         return hmlistaDifusion;
     }

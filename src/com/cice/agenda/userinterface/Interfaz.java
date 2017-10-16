@@ -14,17 +14,16 @@ import com.cice.agenda.dto.ContactoPersonalDTO;
 import com.cice.agenda.dto.ContactoProfesionalDTO;
 import com.cice.agenda.dto.enumeration.TipoEmail;
 import com.cice.agenda.dto.pojo.DireccionPOJO;
+import com.cice.agenda.exceptions.ContactoExistenteException;
 import com.cice.agenda.exceptions.DeleteException;
 import com.cice.agenda.exceptions.ListaExistenteException;
 import com.cice.agenda.exceptions.NotValidFormatException;
 import com.cice.agenda.utils.Validator;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 
 /**
  *
@@ -43,9 +42,7 @@ public class Interfaz {
     }
 
     private void mostrarMenu() {
-        System.out.println("=================");
-        System.out.println("=   AGENDA      =");
-        System.out.println("=================");
+
         getOpcion();
 
     }
@@ -75,6 +72,9 @@ public class Interfaz {
  *      lista de difusión*/
     private void getOpcion() {
         do {
+            System.out.println("==================================");
+            System.out.println("===========   AGENDA   ===========");
+            System.out.println("==================================");
             System.out.println("Elige la opción: ");
             System.out.println("1. Mostrar contactos de la agenda");
             System.out.println("2. Mostrar contactos por coincidencia de nombre o apellido");
@@ -87,6 +87,7 @@ public class Interfaz {
             System.out.println("9. Eliminiar contacto");
             System.out.println("10. Eliminar lista de difusión");
             System.out.println("0. Salir");
+            System.out.println("==================================");
             try {
                 opcion = sc.nextInt();
                 switch (opcion) {
@@ -100,20 +101,26 @@ public class Interfaz {
                     case 2:
                         buscar();
                     case 3:
+                        listadifusion.mostrarInfo();
                         break;
-                    case 4:
-                        crearContacto();
-                        break;
-                    case 5: 
-                
-                    try {
-                        crearListaDifusion();
-                    } catch (ListaExistenteException ex) {
-                        System.out.println(ex.getMessage());
+                    case 4: {
+                        try {
+                            crearContacto();
+                        } catch (ContactoExistenteException ex) {
+                            System.out.println(ex.getMessage());
+                        }
                     }
                     break;
+                    case 5:
+
+                        try {
+                            crearListaDifusion();
+                        } catch (ListaExistenteException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                        break;
                     case 6:
-                        
+
                         break;
                     case 9:
 
@@ -193,7 +200,7 @@ public class Interfaz {
         personaDTO.setEmail(hm_email);
     }
 
-    private void crearContacto() {
+    private void crearContacto() throws ContactoExistenteException {
 
         ContactoPersonalDTO personaDTO = new ContactoPersonalDTO();
         sc.nextLine();
@@ -204,7 +211,7 @@ public class Interfaz {
         System.out.print("Introduce el segundo apellido: ");
         personaDTO.setSegundoApellido(sc.nextLine());
         if (!agenda.contactoExistente(personaDTO)) {
-            
+
             System.out.print("Introduce la fecha de nacimiento dd-MM-yyyy ");
             try {
                 personaDTO.setFechaNacimiento(Constantes.sdf.parse(sc.nextLine()));
@@ -250,12 +257,12 @@ public class Interfaz {
                 agenda.agregar(personaDTO);
             }
         } else {
-            System.out.println("ERROR: El contacto ya existe");
+            throw new ContactoExistenteException(ContactoExistenteException.ERROR_CODE);
+            //System.out.println("ERROR: El contacto ya existe");
         }
 
     }
 
-    
     private void asignacionContactoProfesional(ContactoProfesionalDTO contactoProfesional, ContactoPersonalDTO personaDTO) {
         contactoProfesional.setNombre(personaDTO.getNombre());
         contactoProfesional.setPrimerApellido(personaDTO.getPrimerApellido());
@@ -264,7 +271,8 @@ public class Interfaz {
     }
 
     private void buscar() {
-        System.out.println("Escribre un nombre u apellido para buscar en la agenda");
+        sc.nextLine();
+        System.out.println("Escribe un nombre u apellido para buscar en la agenda");
         agenda.buscarContactosByNombreApellido(sc.nextLine());
 
     }
@@ -299,26 +307,26 @@ public class Interfaz {
         }
     }
 
-        
     private void crearListaDifusion() throws ListaExistenteException {
         sc.nextLine();
         System.out.println("Escribe el nombre de la lista");
-        String nombreLista=sc.nextLine();
+        String nombreLista = sc.nextLine();
         if (!listadifusion.existeListaDifusion(nombreLista)) {
             listadifusion.crearListaDifusion(nombreLista);
             System.out.println("La lista ha sido creada correctamente");
         } else {
             throw new ListaExistenteException(ListaExistenteException.ERROR_CODE);
         }
-    
+
     }
-    private void anadirContactosListaDifusion(){
+
+    private void anadirContactosListaDifusion() {
         sc.nextLine();
-        
-        if (!agenda.isEmpty()){
+
+        if (!agenda.isEmpty()) {
             System.out.println("Elige un contacto a añadir");
             agenda.mostrarListadoAgenda();
         }
-    
+
     }
 }

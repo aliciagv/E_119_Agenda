@@ -14,8 +14,8 @@ import com.cice.agenda.business.IIncluidaDifusion;
 public class Difusion implements IIncluidaDifusion{
 
     @Override
-    public void incluirDifusion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean incluirDifusion() {
+       return true;
     }
     
 }
