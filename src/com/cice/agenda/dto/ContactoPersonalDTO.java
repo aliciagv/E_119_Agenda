@@ -7,7 +7,6 @@ package com.cice.agenda.dto;
 
 import com.cice.agenda.dto.pojo.DireccionPOJO;
 import com.cice.agenda.dto.pojo.PersonaPOJO;
-import java.util.Date;
 import java.util.HashMap;
 import com.cice.agenda.business.IIncluidaDifusion;
 
