@@ -199,6 +199,9 @@ public class Interfaz {
         } while (opcion.equalsIgnoreCase("Y") && (hm_email.isEmpty() || hm_email.size() < 2));
         personaDTO.setEmail(hm_email);
     }
+    private void crearTelefonos(ContactoPersonalDTO personaDTO) {
+    
+    }
 
     private void crearContacto() throws ContactoExistenteException {
 
